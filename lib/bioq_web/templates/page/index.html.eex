@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h2><%= gettext "Here comes awesome vis!" %></h2>
+</div>
+<div>
+<script>
+  d3.json("<%= static_path(@conn, "/data/cargraph.json") %>",function(error, json) {
+		console.log(json);
+	});
+</script>
+</div>
