@@ -24,4 +24,4 @@ import "phoenix_html"
 import * as d3Selection from 'd3-selection';
 import * as d3Timer from 'd3-timer';
 import * as d3Fetch from 'd3-fetch';
-const d3 = Object.assign({}, d3Selection, d3Timer, d3Fetch);
+export const d3 = Object.assign({}, d3Selection, d3Timer, d3Fetch);
