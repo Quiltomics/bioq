@@ -21,6 +21,12 @@ defmodule BioqWeb.Router do
     get "/utils", UtilController, :index
   end
 
+  scope "/utils", BioqWeb do
+    pipe_through(:browser)
+
+    get "/rgen", UtilController, :rgen
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", BioqWeb do
   #   pipe_through :api

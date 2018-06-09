@@ -1,3 +1,4 @@
+<a href="<%= util_path(@conn, :rgen) %>">
 <div class='btn btn-default'>
 Random number generator
-</div>
+</div></a>
