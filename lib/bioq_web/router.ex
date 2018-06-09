@@ -18,6 +18,7 @@ defmodule BioqWeb.Router do
 
     get "/", PageController, :index
     get "/about", PageController, :about
+    get "/utils", UtilController, :index
   end
 
   # Other scopes may use custom stacks.
