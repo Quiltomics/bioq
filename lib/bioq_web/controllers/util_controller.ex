@@ -6,6 +6,10 @@ defmodule BioqWeb.UtilController do
   end
 
   def rgen(conn, _params) do
+    render conn, "rgen.html"
+  end
+
+  def call_rgen(conn, _params) do
     text(conn, "whatever")
   end
 end
