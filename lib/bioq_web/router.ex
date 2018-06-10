@@ -25,7 +25,7 @@ defmodule BioqWeb.Router do
     pipe_through(:browser)
 
     get "/rgen", UtilController, :rgen
-    post "/rgen", UtilController, :rgen, ["distribution": :distribution, "size": :size]
+    post "/rgen", UtilController, :rgen
   end
 
   # Other scopes may use custom stacks.
