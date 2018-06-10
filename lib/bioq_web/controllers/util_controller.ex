@@ -5,11 +5,12 @@ defmodule BioqWeb.UtilController do
     render conn, "index.html"
   end
 
+  def rgen(conn, %{"rgen_params" => rgen_params}) do
+    text conn, ~s[distribution: #{Map.get(rgen_params,"distribution")}
+  size: #{Map.get(rgen_params,"size")}]
+  end
   def rgen(conn, _params) do
     render conn, "rgen.html"
   end
 
-  def call_rgen(conn, _params) do
-    text(conn, "whatever")
-  end
 end
