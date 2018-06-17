@@ -1,5 +1,4 @@
 <h3>Params</h3>
-<%= "#{inspect Map.keys(assigns)}" %>
-<%# <%= @params %>
+<%= rgen_params(assigns) %>
 <h3>Output</h3>
-<%# <%= @output %>
+<%= rgen_output(assigns) %>
