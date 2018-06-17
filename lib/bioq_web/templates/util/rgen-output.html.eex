@@ -1,4 +1,5 @@
 <h3>Params</h3>
-<%= @params %>
+<%= "#{inspect Map.keys(assigns)}" %>
+<%# <%= @params %>
 <h3>Output</h3>
-<%= @output %>
+<%# <%= @output %>

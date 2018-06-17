@@ -8,5 +8,5 @@
 <% end %>
 </div>
 <div class="col-md-9" id="outputPanel">
-<%= output() %>
+<%=  render @view_module, "rgen-output.html", assigns %>
 </div>
