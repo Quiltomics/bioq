@@ -17,7 +17,7 @@ defmodule BioqWeb.UtilController do
   end
   def rgen(conn, %{"distribution" => distribution, "size" => size}) do
     paramText = "Distribution: #{distribution}, size: #{size}"
-    output = [Rport.runR("#{distribution}(n=#{size})")]
+    output = [Relixir.runR("#{distribution}(n=#{size})")]
     outputText = "(It is real, just looks weird.) " <> Enum.join(output, ", ")
     # UtilView.render_rgen_output(%{"output": outputText , "params": paramText})
     render conn, "rgen.html", %{"output": outputText , "params": paramText}
