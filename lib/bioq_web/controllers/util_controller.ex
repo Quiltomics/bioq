@@ -17,7 +17,7 @@ defmodule BioqWeb.UtilController do
   end
   def rgen(conn, %{"distribution" => distribution, "size" => size}) do
     paramText = "Distribution: #{distribution}, size: #{size}"
-    output = [3,2,1,4,5,6,6,3,3,2]
+    output = [Rport.hello()]
     outputText = "(No, it's not real.) " <> Enum.join(output, ", ")
     # UtilView.render_rgen_output(%{"output": outputText , "params": paramText})
     render conn, "rgen.html", %{"output": outputText , "params": paramText}
