@@ -18,11 +18,15 @@ defmodule BioqWeb.UtilView do
     theParams
   end
 
-  def rgen_params(allAssigns) do
-    "is_list = #{is_list(allAssigns)}" <> "\n" <> "is_map = #{is_map(allAssigns)}"
+  def rgen_params(_) do
+    "Parameters not available."
+    # "is_list = #{is_list(allAssigns)}" <> "\n" <> "is_map = #{is_map(allAssigns)}"
   end
 
   def rgen_output(%{:output => output}) do
     output
+  end
+  def rgen_output( _ ) do
+    "Output not available."
   end
 end
