@@ -17,20 +17,25 @@ defmodule BioqWeb.UtilController do
 
   def rgen(conn, %{"distribution" => distribution, "size" => size}) do
     paramText = "Distribution: #{distribution}, size: #{size}"
-    result = Relixir.runR("#{distribution}(n=#{size})")
-    outputText =
-    case result do
-      {:error, message} ->
-        "ERROR: #{message}"
-      data ->
-        "(It is real, just looks weird.)" <> Enum.join([data], ", ")
-    end
-    # outputJSON = Relixir.runR("x <- #{distribution}(n=#{size})","x", %{"output" => "json"})
-    # UtilView.render_rgen_output(%{"output": outputText , "params": paramText})
-    render conn, "rgen.html", %{"output": outputText , "params": paramText}
-  end
-  def rgen(conn, _params) do
-    render conn, "rgen.html"
+
+    rCode = """
+    x <- #{distribution}(n=#{size})
+    y <- hist(x,plot=FALSE)
+    """
+    result = Relixir.runR(rCode, "y", %{"output" => "json"})
+    output =
+      case result do
+        {:error, message} ->
+          "ERROR: #{message}"
+        data ->
+         data
+      end
+
+    # render conn, "rgen.html", %{"params": paramText, "output": output}
+    render conn, "rgen.html", %{"params": paramText, "json": output}
   end
 
+  def rgen(conn, _ ) do
+    render conn, "rgen.html"
+  end
 end
