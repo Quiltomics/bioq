@@ -14,9 +14,13 @@ defmodule BioqWeb.UtilView do
   end
 
   def rgen_output(%{:json => json}) do
+    randName = Enum.random(1..1000)
+      |> Integer.to_string
+      |> String.pad_leading(4, "0")
+
     Phoenix.HTML.raw("""
-<svg><circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" /></svg>
-""" <> vis_histogram(json))
+<svg id="svg#{randName}" width="300px" height="300px"></svg>
+""" <> vis_histogram(json, "#svg#{randName}"))
   end
   def rgen_output(%{:output => output}), do: output
 
@@ -24,12 +28,35 @@ defmodule BioqWeb.UtilView do
     "Output not available."
   end
 
-  defp vis_histogram(json) do
+  #' Return the code to draw histogram from R `hist` object into the `parentSelector`
+  defp vis_histogram(json, parentSvgSelector) do
     js = """
 <script>
   let d3 = require('js/app').d3;
-  console.log(#{json});
+  let hist = #{json};
+  let parentSvg = document.querySelector("#{parentSvgSelector}");
+  let W = +parentSvg.scrollWidth;
+  let H = +parentSvg.scrollHeight;
+  console.log(W + " - " + H);
+  let rects = d3.select("#{parentSvgSelector}").append("g")
+    .attr("transform",`translate(25,${H-50}) scale(1,-1)`).selectAll("rect")
+    .data(hist['density']);
+  let yScale = d3.scaleLinear()
+    .range([20, H - 30])
+    .domain([0,1]);
+  let xScale = d3.scaleBand()
+    .domain(hist['mids'])
+    .range([0, W - 50]);
+  rects.enter().append("rect")
+    .attr("x", (d,i) => {return xScale(hist['mids'][i])})
+    .attr("y", (d,i) => {return 0})
+    .attr("width", (d,i) => {return xScale.bandwidth()-2})
+    .attr("height", (d,i) => {return yScale(hist['density'][i])})
+    .attr("opacity", 0.5)
+    .attr("stroke", 1);
+  // console.log(#{json});
 </script>
-    """
+"""
+    js
   end
 end
