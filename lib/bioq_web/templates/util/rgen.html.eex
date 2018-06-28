@@ -1,8 +1,8 @@
 <div class="col-md-3" id="inputPanel">
 <%= form_for @conn, util_path(@conn, :rgen), [as: :rgen_params], fn f -> %>
-  <label for="inputDistribution">Distribution</label>
+  <%= label f, "inputDistribution", "Distribution"%>
   <%= select f, :distribution , ["Normal": "rnorm", "Uniform": "runif"] , class: "form-control"%><br>
-  <label for="inputSize">Size</label>
+  <%= label f, "inputSize", "Size"%>
   <%= text_input f, :size, class: "form-control"%><br>
   <%= submit "Generate", class: "btn btn-default" %>
 <% end %>
