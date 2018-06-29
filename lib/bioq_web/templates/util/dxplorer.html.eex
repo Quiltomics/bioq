@@ -1,0 +1,15 @@
+<div style="display: flex; flex-direction: column;">
+  <div>
+  <%= form_for @conn, util_path(@conn, :dxplorer), [as: :dxplorer_params], fn f -> %>
+    <div>
+      <%= label f, "csvFilePath", "CSV File" %>
+      <%= text_input f, :csvFilePath, class: "form-control"%><br>
+      <%= submit "Load", class: "btn btn-default" %>
+    </div>
+  <% end %>
+  </div><br>
+  <div>
+  BANANAS
+  <%# <%=  render @view_module, "dxplorer-output.html", assigns %>
+  </div>
+</div>

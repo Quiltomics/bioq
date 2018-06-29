@@ -26,6 +26,7 @@ defmodule BioqWeb.Router do
 
     get "/rgen", UtilController, :rgen
     post "/rgen", UtilController, :rgen
+    get "/dxplorer", UtilController, :dxplorer
   end
 
   # Other scopes may use custom stacks.

@@ -1,4 +1,10 @@
-<a href="<%= util_path(@conn, :rgen) %>">
-<div class='btn btn-default'>
-Random number generator
-</div></a>
+<p><a href="<%= util_path(@conn, :rgen) %>">
+	<div class='btn btn-default'>
+	Random number generator
+	</div>
+</a></p>
+<p><a href="<%= util_path(@conn, :dxplorer) %>">
+	<div class='btn btn-default'>
+	Data Explorer	
+	</div>
+</a></p>

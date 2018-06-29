@@ -38,4 +38,8 @@ defmodule BioqWeb.UtilController do
   def rgen(conn, _ ) do
     render conn, "rgen.html"
   end
+
+  def dxplorer( conn, _ ) do
+    render conn, "dxplorer.html"
+  end
 end
