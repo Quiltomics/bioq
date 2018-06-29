@@ -59,4 +59,7 @@ defmodule BioqWeb.UtilView do
 """
     js
   end
+
+  def dxplorer_output(%{:output => output}), do: output
+  def dxplorer_output( _ ), do: "WHATEVER"
 end

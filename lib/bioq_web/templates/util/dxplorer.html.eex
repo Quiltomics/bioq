@@ -3,13 +3,12 @@
   <%= form_for @conn, util_path(@conn, :dxplorer), [as: :dxplorer_params], fn f -> %>
     <div>
       <%= label f, "csvFilePath", "CSV File" %>
-      <%= text_input f, :csvFilePath, class: "form-control"%><br>
+      <%= text_input f, :csvFilePath, class: "form-control", value: "http://samplecsvs.s3.amazonaws.com/SacramentocrimeJanuary2006.csv" %><br>
       <%= submit "Load", class: "btn btn-default" %>
     </div>
   <% end %>
   </div><br>
   <div>
-  BANANAS
-  <%# <%=  render @view_module, "dxplorer-output.html", assigns %>
+  <%=  render @view_module, "dxplorer-output.html", assigns %>
   </div>
 </div>

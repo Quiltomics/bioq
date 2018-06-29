@@ -39,6 +39,9 @@ defmodule BioqWeb.UtilController do
     render conn, "rgen.html"
   end
 
+  def dxplorer(conn, %{"dxplorer_params" => dxplorer_params}) do
+    render conn, "dxplorer.html", %{"output": "Reading file #{Map.get(dxplorer_params, "csvFilePath")}"}
+  end
   def dxplorer( conn, _ ) do
     render conn, "dxplorer.html"
   end
