@@ -40,7 +40,19 @@ defmodule BioqWeb.UtilController do
   end
 
   def dxplorer(conn, %{"dxplorer_params" => dxplorer_params}) do
-    render conn, "dxplorer.html", %{"output": "Reading file #{Map.get(dxplorer_params, "csvFilePath")}"}
+    # TODO: assign a session id, then redirect to that
+    # Use session id to create a tmp storage
+    # Download the file to tmp/storage/sessionId
+    # return the file path
+    csvFileUrl = Map.get(dxplorer_params, "csvFilePath")
+    redirect(conn, to: util_path(conn, :dxplorer, csvFilePath: csvFileUrl, sessionId: "123abc456"))
+  end
+  def dxplorer(conn, %{"sessionId" => sessionId, "csvFilePath" => csvFilePath}) do
+    cnames = Relixir.runR("""
+    X <-read.csv("#{csvFilePath}")
+    cnames <- colnames(X)
+    ""","cnames")
+    render conn, "dxplorer.html", %{"sessionId": sessionId, "colNames": cnames}
   end
   def dxplorer( conn, _ ) do
     render conn, "dxplorer.html"

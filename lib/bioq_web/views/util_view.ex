@@ -60,6 +60,7 @@ defmodule BioqWeb.UtilView do
     js
   end
 
+  def dxplorer_colnames(%{:colNames => colNames}), do: colNames
   def dxplorer_output(%{:output => output}), do: output
   def dxplorer_output( _ ), do: "WHATEVER"
 end
